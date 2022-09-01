@@ -1,0 +1,64 @@
+--Movement data are in format of pixels-->divide by 1000 to convert to centimeters
+
+--Each subject has 4 fields:
+z0_ -> raw position data
+z0 -> filtered position
+z1 -> filtered velocity
+z2 -> filtered acceleration
+
+IMPORTANT: Make sure the data is loaded in the terminal before running the MATLAB functions. 
+	   One subject's data is also provided for the Python code (make sure it's in the same folder)
+
+AR Model Code:
+
+ACF_PACF
+Plots the ACF and PACF of random trials (only x data)
+
+determine_ar_orderc
+- this is a function which takes in the a defined subset of the movement data and calculates the MSE and AIC scores
+
+plotting_forloop_video
+- this is the function used in debug mode to generate the real time plots seen in the video for AR prediction
+
+MLP_filt_subjectlist
+- this function applies an AR model prediction of specified order, coefficients, and subset of data, and outputs overall MSE and MSE for each trial tested
+
+MLP_filt_subjectlist_AIC
+- this function is identical to the above function except that it calculates AIC scores instead of MSE
+
+plotting_predicted_points
+- this function can be used to plot the predicted points against the actual points for a defined delay and set of coefficients
+
+subject_opt_comparison_filt_AICversion
+- this program is built for doing cross validation among all the participants' data. It takes a very long time to run, as it performs numerous optimizations on different subsets of the data
+
+discrete_grad_descent_multipar
+- This it the python notebook (already executed) which contains the code for gradient descent, along with an analysis of the grad-descent's performance on our data and the AR model
+
+Kalman Filter Code:
+
+demo_kalman_V1
+you can run this function to demonstrate the kalman filter working on a random trial for cases where the observations are trusted and not. The average error was also calculated here but is not demoed.
+
+kalman_xy_V2
+This function actually contains the model for the kalman filter
+
+HMM Code:
+
+demo_hmm_V4
+This function will demonstrate the use of the HMM model-only the average error is actually shown
+
+assign_state
+this function assigns the states to the observations
+
+fb_alg
+The forward-backward algorithm used to calculate the Posterior of the current state
+
+round_sf
+Rounds the data down to a specified number of significant figures
+
+hmm_MLE_V3
+performs the MLE solution of esimating the transition and emission probabilities
+
+get_hidden_state_V2
+calculates the hidden states from the actual observations
